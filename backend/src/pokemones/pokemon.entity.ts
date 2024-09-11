@@ -2,9 +2,9 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Pokemon {
-    @PrimaryColumn( {type: "string"} )
+    @PrimaryColumn( {type: "text"} )
     id: string
-    @Column( {type: "string"} )
+    @Column( {type: "text"} )
     name: string
     @Column( {type: "int"} )
     attack: number
@@ -14,8 +14,8 @@ export class Pokemon {
     hp: number
     @Column( {type: "int"} )
     speed: number
-    @Column( {type: "string"} )
+    @Column( {type: "text"} )
     type: string
-    @Column( {type: "string"} )
+    @Column( {type: "text"} )
     imageUrl: string
 }
