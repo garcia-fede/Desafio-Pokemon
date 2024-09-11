@@ -12,7 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type: 'sqlite',
       database: '../../pokemonesdb.db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
       migrations: ['dist/migrations/*.js'],
     }),
   ],
