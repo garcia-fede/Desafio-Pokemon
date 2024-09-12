@@ -1,4 +1,4 @@
-import PokemonList from "./Components/PokemonList.jsx";
+import PokemonList from "./Components/Home.jsx";
 import './assets/pokemonStyle.css';
 
 function App() {

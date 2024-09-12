@@ -7,10 +7,10 @@
 }
 
 .pokemonContainer{
+    margin-top: 100px;
     width: 100%;
-    padding: 150px;
     display: flex;
-    gap: 3rem;
+    justify-content: space-between;
 }
 .pokemonCard{
     width: 170px;
@@ -18,6 +18,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: .3s !important;
+    /* Desactivar el select de texto e imagen*/
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 .pokemonCard div{
     display: flex;
@@ -25,6 +30,22 @@
     align-items: center;
     flex-direction: column;
 }
+.pokemonCard:hover{
+    background: rgb(240, 240, 240);
+    cursor: pointer;
+}
 .pokemonCard img{
     width: 100px;
+}   
+
+
+.battleContainer{
+    display: flex;
+    justify-content: space-between;
+}
+.battlePokemon img{
+    width: 250px;
+}
+.selectedPokemon{
+
 }
