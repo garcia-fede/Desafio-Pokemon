@@ -10,7 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     PokemonesModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: '../../pokemonesdb.db',
+      database: '/db/pokedb.db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: false,
       migrations: ['dist/migrations/*.js'],
