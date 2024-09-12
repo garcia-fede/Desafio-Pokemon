@@ -11,7 +11,6 @@ const PokemonList = () => {
     const [pokemon,setPokemon] = useState({})
 
     const getPokemons = ()=>{
-        console.log("ENtre")
         Axios.get("http://localhost:3001/pokemones")
         .then((response) => {
             console.log("GET Exitoso, pokemones guardados.")

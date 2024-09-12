@@ -38,14 +38,16 @@
     width: 100px;
 }   
 
-
 .battleContainer{
+    margin-top: 50px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .battlePokemon img{
     width: 250px;
 }
-.selectedPokemon{
 
+.battlePokemon p{
+    margin: 10px 0 5px 0;
 }
