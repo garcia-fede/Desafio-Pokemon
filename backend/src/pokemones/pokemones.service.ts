@@ -7,7 +7,15 @@ import { Repository } from 'typeorm';
 export class PokemonesService {
     constructor(@InjectRepository(Pokemon) private pokemonRepository : Repository<Pokemon>) {}
 
+    //Función para listar todos los pokemones desde la DB
 
+    async findAll(){
+        const pokemones = await this.pokemonRepository.find()
+        console.log('Encontrados: ', pokemones)
+        return pokemones;
+    }
+
+    // Funciones para batalla de pokemones: battlePokemons - calculateDamage - decideWinner
 
     calculateDamage (defense : number, damage : number) : number {
         let damageDone = damage - defense;
@@ -18,7 +26,6 @@ export class PokemonesService {
     }
 
     decideWinner (selectedPokemon : Pokemon , enemyPokemon : Pokemon , selectedAttacks : boolean) : String {
-        
         if(selectedAttacks){
             //El pokemon seleccionado ataca al enemigo
             // console.log("TURNO DE ",selectedPokemon.name)
@@ -44,15 +51,10 @@ export class PokemonesService {
         }
     }
 
-    async findAll(){
-        const pokemones = await this.pokemonRepository.find()
-        console.log('Encontrados: ', pokemones)
-        return pokemones;
-    }
-
     battlePokemons(selectedPokemon,enemyPokemon){
         console.log(selectedPokemon)
         let result : String;
+        
         if(selectedPokemon.speed>enemyPokemon.speed){
             result = this.decideWinner(selectedPokemon, enemyPokemon, true)
         } else if(selectedPokemon.speed==enemyPokemon.speed){
@@ -68,6 +70,11 @@ export class PokemonesService {
         } else{
             result = this.decideWinner(selectedPokemon, enemyPokemon, false)
         }
+
         return result;
     }
+
+    //Función para guardar resultado de la batalla en la DB
+
+    
 }
