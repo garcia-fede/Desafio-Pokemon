@@ -2,9 +2,9 @@
 
 Requisitos previos:
 
-sqlite3 - Versión utilizada: v3.46.1
-node - Versión utilizada: v18.17.1
-nestjs - v10.0.0
+- sqlite3 - Versión utilizada: v3.46.1
+- node - Versión utilizada: v18.17.1
+- nestjs - v10.0.0
 
 Pasos a seguir para iniciar el proyecto correctamente:
 
