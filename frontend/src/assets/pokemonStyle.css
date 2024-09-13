@@ -37,7 +37,18 @@
 .pokemonCard img{
     width: 100px;
 }   
-
+.battleResultContainer{
+    width: 100%;
+    padding: 50px 0;
+    margin: 25px 0;
+    background: lightblue;
+}
+.battleResultContainer p{
+    text-align: center;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
 .battleContainer{
     margin-top: 50px;
     display: flex;
