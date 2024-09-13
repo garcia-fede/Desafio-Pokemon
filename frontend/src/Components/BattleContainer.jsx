@@ -12,18 +12,19 @@ const BattleContainer = ({selectedPokemon, pokemones}) => {
         const selectedPokemonIndex = pokemones.findIndex(pokemon=>pokemon==selectedPokemon)
         if(randomEnemy!=selectedPokemonIndex){
             setEnemyPokemon(pokemones[randomEnemy])
+            return pokemones[randomEnemy];
         } else{
             setRandomEnemy()
         }
     }
 
     const startBattle = ()=>{
-        setRandomEnemy()
+        const newEnemy = setRandomEnemy()
         Axios.post("http://localhost:3001/pokemones",{
             selectedPokemon: selectedPokemon,
-            enemyPokemon: enemyPokemon
+            enemyPokemon: newEnemy
         }).then((result)=>{
-            console.log("Éxito: Se enviaron los pokemones ",selectedPokemon," y ",enemyPokemon," con éxito")
+            console.log("Éxito: Se enviaron los pokemones ",selectedPokemon," y ",newEnemy," con éxito")
             console.log("Resultado de la batalla:",result)
         }).catch((e)=>{
             console.log("Error: No se pudo enviar los pokemones")
