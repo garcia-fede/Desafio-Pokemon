@@ -1,5 +1,6 @@
 import { Button, CardMedia, CardContent, Card, LinearProgress } from '@mui/material';
-import { Axios } from 'axios';
+// import { Axios } from 'axios';
+import Axios from "axios";
 import React, { useEffect, useState } from 'react'
 
 const BattleContainer = ({selectedPokemon, pokemones}) => {
@@ -16,13 +17,20 @@ const BattleContainer = ({selectedPokemon, pokemones}) => {
         }
     }
 
-    const recursiveBattle = (friendPokemon,enemyPokemon,turn)=>{
-        console.log(friendPokemon)
-        console.log(enemyPokemon)
-    }
-
     const startBattle = ()=>{
         setRandomEnemy()
+        Axios.post("http://localhost:3001/pokemones",{
+            selectedPokemon: selectedPokemon,
+            enemyPokemon: enemyPokemon
+        }).then((result)=>{
+            console.log("Éxito: Se enviaron los pokemones ",selectedPokemon," y ",enemyPokemon," con éxito")
+            console.log("Resultado de la batalla:",result)
+        }).catch((e)=>{
+            console.log("Error: No se pudo enviar los pokemones")
+            console.log(e)
+        }).finally(()=>{
+            console.log("Fin del post")
+        })
     }
 
     useEffect(()=>{
