@@ -2,6 +2,7 @@ import { Get, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Pokemon } from './pokemon.entity';
 import { Repository } from 'typeorm';
+import { Batalla } from './batalla.entity';
 
 @Injectable()
 export class PokemonesService {
@@ -25,35 +26,43 @@ export class PokemonesService {
         return damageDone;
     }
 
-    decideWinner (selectedPokemon : Pokemon , enemyPokemon : Pokemon , selectedAttacks : boolean) : String {
+    decideWinner (selectedPokemon : Pokemon , enemyPokemon : Pokemon , selectedAttacks : boolean) : Batalla {
         if(selectedAttacks){
             //El pokemon seleccionado ataca al enemigo
-            // console.log("TURNO DE ",selectedPokemon.name)
             const newEnemyPokemonHp = enemyPokemon.hp - this.calculateDamage(enemyPokemon.defense,selectedPokemon.attack)
             enemyPokemon.hp = newEnemyPokemonHp
-            // console.log("FIN DE TURNO, VIDA DE Seleccionado: ",selectedPokemon.hp," - VIDA DE Enemigo: ",enemyPokemon.hp)
             if(enemyPokemon.hp>0){
                 return this.decideWinner(selectedPokemon,enemyPokemon, !selectedAttacks);
             } else{
-                return `El ganador de la batalla es ${selectedPokemon.name}`
+                // return `El ganador de la batalla es ${selectedPokemon.name}`
+                const winner = new Batalla()
+                winner.id = null;
+                winner.selectedPokemon = selectedPokemon.name;
+                winner.enemyPokemon = enemyPokemon.name;
+                winner.ganador = selectedPokemon.name;
+                return winner;
             }
         } else{
             //El pokemon enemigo ataca al seleccionado
-            // console.log("TURNO DE ",enemyPokemon.name)
             const newSelectedPokemonHp = selectedPokemon.hp - this.calculateDamage(selectedPokemon.defense,enemyPokemon.attack)
             selectedPokemon.hp = newSelectedPokemonHp
-            // console.log("FIN DE TURNO, VIDA DE Seleccionado: ",selectedPokemon.hp," - VIDA DE Enemigo: ",enemyPokemon.hp)
             if(selectedPokemon.hp>0){ 
                     return this.decideWinner(selectedPokemon,enemyPokemon, !selectedAttacks);
             } else{
-                return `El ganador de la batalla es ${enemyPokemon.name}`
+                // return `El ganador de la batalla es ${enemyPokemon.name}`
+                const winner = new Batalla()
+                winner.id = null;
+                winner.selectedPokemon = enemyPokemon.name;
+                winner.enemyPokemon = selectedPokemon.name;
+                winner.ganador = enemyPokemon.name;
+                return winner;
             }
         }
     }
 
     battlePokemons(selectedPokemon,enemyPokemon){
         console.log(selectedPokemon)
-        let result : String;
+        let result : Batalla;
         
         if(selectedPokemon.speed>enemyPokemon.speed){
             result = this.decideWinner(selectedPokemon, enemyPokemon, true)
@@ -71,6 +80,7 @@ export class PokemonesService {
             result = this.decideWinner(selectedPokemon, enemyPokemon, false)
         }
 
+        console.log(result)
         return result;
     }
 
